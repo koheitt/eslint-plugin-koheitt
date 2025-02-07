@@ -1,0 +1,9 @@
+{
+  "include": ["src", "__tests__"],
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM"]
+  }
+}
