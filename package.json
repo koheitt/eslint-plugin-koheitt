@@ -1,0 +1,11 @@
+{
+  "name": "eslint-plugin-koheitt",
+  "version": "1.0.0",
+  "description": "koheitt's eslint preference",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kohei Tsuruta <seventhepg@gmail.com>",
+  "license": "MIT"
+}
