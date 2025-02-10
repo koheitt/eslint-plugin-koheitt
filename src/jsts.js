@@ -1,5 +1,6 @@
 import js from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
+import pluginImport from "eslint-plugin-import";
 import tseslint from "typescript-eslint";
 
 export const jsBeyondRecommended = {
@@ -104,6 +105,24 @@ export function getRecommendedWithGlobals(globals) {
     {
       name: "Stylistic beyond recommended",
       rules: stylisticBeyondRecommended,
+    },
+    {
+      name: "Import order",
+      plugins: { "import": pluginImport },
+      rules: {
+        "import/order": ["error", {
+          "groups": [
+            "builtin",
+            "external",
+            ["parent", "sibling", "index"],
+          ],
+          "alphabetize": {
+            order: "asc",
+            orderImportKind: "asc",
+          },
+          "newlines-between": "always",
+        }],
+      },
     },
   ];
 }
