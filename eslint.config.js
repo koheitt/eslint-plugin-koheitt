@@ -1,6 +1,13 @@
+import globals from "globals";
+
 import my from "./index.js";
 
 export default [
-  ...my.configs.recommendedInNode,
-  ...my.configs.recommendedInReact,
+  {
+    languageOptions: {
+      globals: globals.nodeBuiltin,
+    },
+  },
+  ...my.configs.recommended,
+  ...my.configs.recommendedReact,
 ];

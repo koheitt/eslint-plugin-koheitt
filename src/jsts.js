@@ -66,63 +66,60 @@ const stylisticBeyondRecommended = {
   "@stylistic/yield-star-spacing": ["error", "after"],
 };
 
-export function getRecommendedWithGlobals(globals) {
-  return [
-    {
-      name: "Target JS and TS",
-      files: ["**/*.{js,jsx,ts,tsx}"],
+const config = [
+  {
+    name: "Target JS and TS",
+    files: ["**/*.{js,jsx,ts,tsx}"],
+  },
+  {
+    name: "JS recommended + beyond",
+    rules: {
+      ...js.configs.recommended.rules,
+      ...jsBeyondRecommended,
     },
-    {
-      name: "JS recommended + beyond",
-      languageOptions: {
-        globals,
-      },
-      rules: {
-        ...js.configs.recommended.rules,
-        ...jsBeyondRecommended,
+  },
+  ...tseslint.configs.recommended,
+  {
+    name: "TS beyond recommended",
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-    ...tseslint.configs.recommended,
-    {
-      name: "TS beyond recommended",
-      files: ["**/*.{ts,tsx}"],
-      languageOptions: {
-        parserOptions: {
-          projectService: true,
-          tsconfigRootDir: import.meta.dirname,
+    rules: tsBeyondRecommended,
+  },
+  {
+    name: "Stylistic recommended",
+    ...stylistic.configs.customize({
+      arrowParens: true,
+      braceStyle: "1tbs",
+      semi: true,
+    }),
+  },
+  {
+    name: "Stylistic beyond recommended",
+    rules: stylisticBeyondRecommended,
+  },
+  {
+    name: "Import order",
+    plugins: { "import": pluginImport },
+    rules: {
+      "import/order": ["error", {
+        "groups": [
+          "builtin",
+          "external",
+          ["parent", "sibling", "index"],
+        ],
+        "alphabetize": {
+          order: "asc",
+          orderImportKind: "asc",
         },
-      },
-      rules: tsBeyondRecommended,
+        "newlines-between": "always",
+      }],
     },
-    {
-      name: "Stylistic recommended",
-      ...stylistic.configs.customize({
-        arrowParens: true,
-        braceStyle: "1tbs",
-        semi: true,
-      }),
-    },
-    {
-      name: "Stylistic beyond recommended",
-      rules: stylisticBeyondRecommended,
-    },
-    {
-      name: "Import order",
-      plugins: { "import": pluginImport },
-      rules: {
-        "import/order": ["error", {
-          "groups": [
-            "builtin",
-            "external",
-            ["parent", "sibling", "index"],
-          ],
-          "alphabetize": {
-            order: "asc",
-            orderImportKind: "asc",
-          },
-          "newlines-between": "always",
-        }],
-      },
-    },
-  ];
-}
+  },
+];
+
+export default config;
