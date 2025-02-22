@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint"
   },
   "author": "Kohei Tsuruta <seventhepg@gmail.com>",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@stylistic/eslint-plugin": "^3.0.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-714736e-20250131",
+    "eslint-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
     "eslint-plugin-react-hooks": "^5.1.0",
     "typescript-eslint": "^8.23.0"
   }
